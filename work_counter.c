@@ -9,9 +9,13 @@
 int main()
 {
 	double workingTime = 0;
+	double* ID;
 
 	printf("Welcome to the Code Hawkins Time Counter\n");
 	sleep(2);
+
+	printf("Please input your worker ID: ");
+	scanf("%d", &ID);
 	printf("Type start to start the timer, pause to pause the timer, stop to stop the timer and check to check worked hours: ");
 
 	char* command = "";
@@ -20,14 +24,15 @@ int main()
 		
 	if (strcmp(&command, "start") == 0)
 	{
-		Timer();
+		workingTime = Timer();
 	}
 
-	//Code to store the worked hours should go in here, it's yet to be decided how that data will be stored
+	printf("Worker ID: %d\n", ID);
+	printf("Please store this time with a screen capture in the Google Sheets File \n");
 
 }
 
-double Timer()
+int Timer()
 {
 	time_t startTime, endTime, deltaTime, totalTime;
 	char* command = "";
@@ -72,7 +77,7 @@ double Timer()
 			endTime = time(NULL);
 			deltaTime = endTime - startTime;
 			totalTime += deltaTime;
-			printf("You worked %d \n", totalTime);
+			printf("You worked %d h, %d mins and %d secs \n", totalTime/3600, totalTime/60, totalTime);
 			return totalTime;
 			shouldRun = false;
 		}
